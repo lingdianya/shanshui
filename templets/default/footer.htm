@@ -1,0 +1,83 @@
+<script language="javascript">
+ var list = document.getElementById("list");
+   var divs = list.getElementsByTagName("div");
+ var t;
+   for (var i = 0; i < divs.length; i++) {
+           divs[i].onmouseover = function (e) {
+   var tip = document.createElement("div");
+   var img = this.getElementsByTagName("img");
+   tip.innerHTML = img[0].getAttribute("alt");
+   var event = event||window.event;
+   tip.setAttribute("class", "tip");
+   tip.setAttribute("className", "tip");
+   tip.style.left = "-100px";
+   this.appendChild(tip);
+   t = setInterval(function(){showtip(tip);},10);
+ 
+           }
+           divs[i].onmouseout = function (e) {
+   clearInterval(t);
+   var tip = this.lastChild;
+   if (tip.tagName == "DIV"){ 
+    this.removeChild(tip);   
+   }
+           }
+ }
+ function showtip(obj)
+ {
+  var left = gs(obj, "left");
+  var value = left+10;
+  if (value <= 0){
+   obj.style.left = value+"px";
+  }
+  else
+   clearInterval(t);
+ }
+ function gs(obj, a){
+  if (obj.currentStyle){ 
+       var curVal=obj.currentStyle[a]
+    }
+  else{ 
+       var curVal=document.defaultView.getComputedStyle(obj, null)[a]
+    } 
+    return parseInt(curVal);
+ }
+</script> <div class="bottom">
+   <div class="bottom_tip"><img src="/skin/images/bottom_pic.jpg" width="361" height="60" /></div>
+
+   <div class="bottom_nav"><a href="#">关于我们</a> <span>|</span> <a href="#">人才招聘</a><span>|</span><a href="#">商务合作</a><span>|</span><a href="#">联系我们</a><span>|</span><a href="/data/rssmap.html"  target='_blank'>网站地图</a></div>
+   <div class="bottom_tip f_12">
+   <p>版权所有：恩施旅游集团有限公司 | 恩施大峡谷旅游开发有限公司  CopyRight(C) 2014 East All Right Reserved. </p>
+   <p>技术支持：<a href="http://www.dede58.com/"  target='_blank'>织梦58</a>  备案号：鄂ICP备11003875号-1 
+</p>
+   </div>
+ </div>
+ 
+   <script src="/skin/js/Ajax.js" language="javascript" type="text/javascript"></script>
+  <script src="/skin/js/qq.js" language="javascript" type="text/javascript"></script>
+ <div id="full" style="right:10px; top:276px; position:absolute;z-index:1000;">
+<div id='conxz'>
+<div class='listxz'>
+ <div class='contactxz'>
+咨询电话: 135-6958-7790
+ </div>
+ <div class='contactxz'>
+预订电话: 181-3563-2050
+ </div>
+ <div class='contactxz f_16'>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="18%"> <img border="0" SRC="/skin/images/qq.jpg"></td>
+    <td width="82%"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=800021126&site=qq&menu=yes">383535269@qq.com</a></td>
+	
+  </tr>
+</table>
+ </div>
+ <div class='contactxz'>
+<a href='http://cli.im/api/qrcode' target='_blank'>生成二维码 分享到手机</a>
+ </div>
+  
+</div>
+
+</div>
+</div>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{dede:global.cfg_webname/}</title>
+    <meta name="description" content="{dede:global.cfg_description/}" />
+    <meta name="keywords" content="{dede:global.cfg_keywords/}" />
+    <meta name="author" content="design by www.dede58.com" />
+    <link rel="shortcut icon" href="/skin/favicon.ico" />
+    <link  href="/skin/css/daxiagu.css"  rel="stylesheet" type="text/css" />
+    <script src="/skin/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/skin/js/banner.js" type="text/javascript"></script>
+  </head>
+  <body>
+    {dede:include filename="head.htm"/}
+    <div class="flexslider">
+      <ul class="slides">
+        <li style="background:url(/skin/images/banner1.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(/skin/images/banner2.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(/skin/images/banner3.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(/skin/images/banner4.jpg) 50% 0 no-repeat;"></li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="/skin/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.flexslider').flexslider({
+          directionNav: true,
+          pauseOnAction: false
+        });
+      });
+    </script>
+    <div class="h30"></div>
+    <div class="div_1180">
+      <div class="jd_566">
+        <div class="jd_box">
+          <div class="jd_title_bg">
+            <div class="i_title white f_16">关于我们</div>
+          </div>
+        </div>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;最初组建于1999年洛阳市西泰山AAAA级风景区施工队，19年来公司秉承以质求生的发展理念，助力于各大景区建设沿线。从最初十几人的施工队发展至今的16个施工队，设计技术人员10人，设计工程师5人，设计研发人员共50余人，从最初的单一项目建设到现在的栈道、滑道，玻璃吊桥，货运索道，玻璃观景台，仿生小品等多元化创新型项目建设，靠的是万辉人团结一心，勇往直前的拼搏和创新精神！公司专注致力于旅游资源开发及管理，技术力量雄厚、装备精良、业绩卓著，可同时对多个景点进行开发和建设，对全国各地多家旅游景区进行了各项配套设施的设计与施工，业务范围涉及到国内多个省、市和自治区，截止2018年1月1号已突破5亿大关，成功是留给有准备的人的，我们已经准备了19年，我们坚信唯有脚踏实地，努力奋斗才能走的更稳，更远，万辉人铭记使命为祖国绿色旅游事业贡献自己的一份力量。
+        </p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;公司遵循“保证质量，用户至上，信守合同”的经营宗旨，奉行“诚信为本，奉献精品”的经营理念，在每项工程中，想用户所想，从工程品质、适用性、经济性、工程进度等多方面为用户考虑，不光忠实执行用户的要求和我们的承诺，同时为用户当好参谋，将创新理念和科学元素巧妙结合，不断探索规划、设计、施工三者的最优应用模式，全力研发新颖的设计、最优质的产品和最完善的服务、让用户在工程项目实施中能达到事半功倍的效果。因此，公司所承担的近百个施工项目，全部取得国家检验合格证书。
+        </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;公司凭借先进的技术、严格的管理、雄厚的实力、优质的服务得到社会各界和广大客户的好评。</p>
+        <p>河南万辉旅游资源开发有限公司全体员工怀着激情和梦想，与您一起赢就美好明天，为中国的绿色旅游事业不懈努力。充满激情和开放的万辉人热忱欢迎新老客户的光临和指导，洽谈业务。</p>
+        <div class="jd_pic">
+          <div id="list" name="list">
+            <ul>
+              {dede:arclist row="4" typeid="14" titlelen="20" infolen="90" orderby="pubdate" orderway="desc" col="1" imgwidth="82" imgheight="80"}
+              <li>
+                <div class="box"><a href="[field:arcurl/]"><img src="[field:picname/]" width="281" height="158"  alt="[field:title /]" />[field:title /]</a></div>
+              </li>
+              {/dede:arclist}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <script language="javascript">
+        var Obj=''
+        document.onmouseup=MUp
+        document.onmousemove=MMove
+        
+        function MDown(Object){
+        Obj=Object.id
+        document.all(Obj).setCapture()
+        pX=event.x-document.all(Obj).style.pixelLeft;
+        pY=event.y-document.all(Obj).style.pixelTop;
+        }
+        
+        function MMove(){
+        if(Obj!=''){
+          document.all(Obj).style.left=event.x-pX;
+          document.all(Obj).style.top=event.y-pY;
+          }
+        }
+        
+        function MUp(){
+        if(Obj!=''){
+          document.all(Obj).releaseCapture();
+          Obj='';
+          }
+        }
+      </script>
+      <div class="i_zixun">
+        <div class="i_zixun_bg">
+          <div class="i_title white f_16">产品介绍</div>
+          <div id="mask"></div>
+          <div class="i_tip"><span><a href="#"  target='_blank'><img src="/skin/images/sina_tip.jpg" width="59" height="57" /></a></span>
+            <span onmousemove="mask.style.visibility='visible';massage_box.style.visibility='visible'" style="cursor:hand">
+            <img src="/skin/images/weixin_tip.jpg" width="57" height="57" />
+            </span>     
+          </div>
+        </div>
+        <div id="massage_box"  onmouseout="massage_box.style.visibility='hidden'; mask.style.visibility='hidden'">
+          <p><img src="/skin/images/weixin_2w.jpg" /></p>
+          <p class="f_12 c_000">扫一扫，关注恩施大峡谷</p>
+        </div>
+        <div class="i_zixun_list">
+          <ul>
+            {dede:arclist row="4" typeid="2" titlelen="60" infolen="90" orderby="pubdate" orderway="desc" col="1" imgwidth="82" imgheight="80"}
+            <li  onmouseover="this.style.background='url(/skin/images/btn_over.jpg) left no-repeat';" onmouseout="this.style.background='url(/skin/images/btn_out.jpg) left no-repeat';">
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="61" height="60" align="center">[field:pubdate function="GetDateMK(@me)" /]</td>
+                  <td width="480" height="60" align="left" style="padding-left:10px;" >
+                    <p class="f_12 c_666"><a href="[field:arcurl/]"><strong class="f_14">[field:title /]</strong></a>
+                      </br>[field:description/]
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </li>
+            {/dede:arclist}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mid_bg">
+      <div class="title">
+        <h1>产品示例</h1>
+      </div>
+      <div class="k_list">
+        <ul>
+          <li class="k1_out" onmouseover="this.style.background='url(/skin/images/k1_over.jpg) left no-repeat';this.style.color='#53b115'" onmouseout="this.style.background='url(/skin/images/k1_out.jpg) left no-repeat';this.style.color='#1557b1'">
+          </li>
+          <li class="k2_out" onmouseover="this.style.background='url(/skin/images/k2_over.jpg) left no-repeat';this.style.color='#53b115'" onmouseout="this.style.background='url(/skin/images/k2_out.jpg) left no-repeat';this.style.color='#1557b1'">
+          </li>
+          <li class="k3_out" onmouseover="this.style.background='url(/skin/images/k3_over.jpg) left no-repeat';this.style.color='#53b115'" onmouseout="this.style.background='url(/skin/images/k3_out.jpg) left no-repeat';this.style.color='#1557b1'">
+          </li>
+          <li class="k4_out" onmouseover="this.style.background='url(/skin/images/k4_over.jpg) left no-repeat';this.style.color='#53b115'" onmouseout="this.style.background='url(/skin/images/k4_out.jpg) left no-repeat';this.style.color='#1557b1'">
+        </ul>
+      </div>
+    </div>
+    <div class="link">
+    </div>
+    {dede:include filename="footer.htm"/}
+  </body>
+</html>

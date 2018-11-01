@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
+<title>发布文档</title>
+<style type="text/css">
+<!--
+body {
+	background-image: url(images/allbg.gif);
+}
+.aaa {
+	margin:0 0 0 20px;
+	text-align:left;
+}
+.aaa p {
+	margin-bottom:11px;
+	color:#444;
+	position:relative;
+	padding-left:80px;
+	line-height:18px;
+}
+.aaa p .span {
+	color:#999;
+	position:absolute;
+	width:90px;
+	left:-20px;
+	_left:-100px;
+	text-align:right;
+	top:8px;
+}
+.aaa p em {
+	color:#999;
+}
+-->
+</style>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="../include/js/dedeajax2.js"></script>
+<script language='javascript' src="js/main.js"></script>
+<script type="text/javascript" src="js/calendar/calendar.js"></script>
+<script language="javascript">
+<!--
+function checkSubmit()
+{
+  if(document.form1.title.value==""){
+	   alert("<?php echo $cInfos['titlename']; ?>不能为空！");
+	   return false;
+  }
+  if(document.form1.typeid.value==0){
+	   alert("请选择档案的主栏目！");
+	   return false;
+  }
+}
+-->
+</script>
+</head>
+<body topmargin="8">
+<div style="padding:10px 0 10px 0px; background:#fff; box-shadow: 0 0 4px rgba(0,0,0,0.2);">
+  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="60%" height="30" style="font-size:16px; color:#6DC410"><a href="catalog_do.php?cid=<?php echo $cid?>&channelid=<?php echo $channelid?>&dopost=listArchives" style="font-size:16px; color:#6DC410">文章列表</a> &gt;&gt; 发布文章</td>
+      <td width="30%" align='right'>&nbsp; <?php echo $backurl; ?><a href="catalog_main.php">[<u>栏目管理</u>]</a> </td>
+    </tr>
+  </table>
+  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" id="head1">
+    <tr>
+      <td colspan="2"><table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="84" height="24" align="center" style="font-size:16px; background:#6BC30D; color:#fff;">常规信息</td>
+            <td width="84" align="center" style="font-size:16px; background:#f2f2f2;"><a href="#" onClick="ShowItem2()">高级参数</a></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" id="head2" style="display:none">
+    <tr>
+      <td colspan="2"><table height="24" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="84" align="center" style="font-size:16px; background:#f2f2f2;"><a href="#" onClick="ShowItem2()"><a href="#" onClick="ShowItem1()">常规信息</a>&nbsp;</td>
+            <td width="84" align="center" style="font-size:16px; background:#6BC30D; color:#fff;">高级参数</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <form name="form1" action="archives_add.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit()">
+    <input type="hidden" name="channelid" value="<?php echo $channelid?>" />
+    <input type="hidden" name="cid" value="<?php echo $cid?>" />
+    <input type="hidden" name="dopost" value="save" />
+    
+    
+    <div id="needset" class="aaa" style="margin-top:20px; ">
+    	<p><span class="span"><?php echo $cInfos['titlename']; ?></span><input name="title" type="text" id="title" value="" style="width:388px"></p>
+        
+        <p><span class="span">自定义属性</span><?php
+            	$dsql->SetQuery("Select * From `#@__arcatt` order by sortid asc");
+            	$dsql->Execute();
+            	while($trow = $dsql->GetObject())
+            	{
+            		if($trow->att=='j')
+            		  echo "<input class='np' type='checkbox' name='flags[]' id='flags{$trow->att}' value='{$trow->att}' onclick='ShowUrlTr()'>{$trow->attname}[{$trow->att}]";
+            		else
+            		  echo "<input class='np' type='checkbox' name='flags[]' id='flags{$trow->att}' value='{$trow->att}'>{$trow->attname}[{$trow->att}]";
+            	}
+            	?></p>
+        <p style="display:none;" id="redirecturltr"><span class="span">跳转网址</span><input name="redirecturl" type="text" id="redirecturl" style="width:300px" value="" /></p>
+       
+       
+        <p id="pictable" style='<?php if($cInfos['needpic']==0) echo 'display:none'; ?>'><span class="span">缩 略 图</span><input name="picname" type="text" id="picname" style="width:240px" />
+                      <input type="button"  value="本地上传" style="width:70px;cursor:pointer; color:#fff;background: #6BC30D;
+padding: 3px 8px;
+cursor: pointer;
+border-radius: 3px;" />
+                      <iframe name='uplitpicfra' id='uplitpicfra' src='' style='display:none'></iframe>
+                      <span class="litpic_span">
+                      <input name="litpic" type="file" id="litpic"  onChange="SeePicNew(this, 'divpicview', 'uplitpicfra', 165, 'archives_add.php');" size="1" class='np coolbg'/>
+                      </span>
+                      <input type="button" name="Submit2" value="站内选择" style="margin-left:8px; color:#fff;background: #6BC30D;
+padding: 3px 8px;
+cursor: pointer;
+border-radius: 3px;" onClick="SelectImage('form1.picname','small');" class='np coolbg'/>
+                      <input type="button" name="Submit2" value="裁剪" style="margin-left:8px; color:#fff;background: #6BC30D;
+padding: 3px 8px;
+cursor: pointer;
+border-radius: 3px;" onClick="imageCut('picname');" class='np coolbg'/>
+                      </p>
+                       <?php if($cInfos['dfcid']>0)
+      {
+      	echo "<input type='hidden' name='typeid' value='{$cInfos['dfcid']}' />\r\n";
+      	echo "<input type='hidden' name='typeid2' value='0' />\r\n";
+      }
+      else
+      {
+      ?>
+        <p><span class="span">文档主栏目</span><span id='typeidct'>
+                <?php
+          $typeOptions = GetOptionList($cid,$cuserLogin->getUserChannel(),$channelid);
+          echo "<select name='typeid' id='typeid' style='width:240px'>\r\n";
+          echo "<option value='0'>请选择栏目...</option>\r\n";
+          echo $typeOptions;
+          echo "</select>";
+			?>
+                </span> <img src='images/menusearch.gif' style='cursor:pointer;' onClick="ShowCatMap(event, this, <?php echo $channelid; ?>, 'typeid')" alt='快捷选择' title='快捷选择' /> &nbsp;
+                <?php
+			if($cfg_need_typeid2=='Y')
+			{
+				echo "<a href='javascript:AddTypeid2();'>【<u>选择副栏目</u>】</a>";
+			}
+			?>
+                <?php 
+     			 if($cfg_remote_site=='Y')
+     			 {
+   				 ?>
+                <input name="isremote" type="checkbox" id="isremote" value="1" <?php if($cfg_title_site=='Y') echo "checked";?>>
+                是否同步远程发布
+                <?php GetFtp();?>
+                <?php
+     			 }
+    		?></p>
+        <p id='typeid2tr' style='display:none'><span class="span">文档副栏目</span><span id='typeid2ct'></span>
+                <input type='text' name='typeid2' id='typeid2' value='' style='width:200px;' />
+                <img src='images/menusearch2.gif' style='cursor:pointer;' onClick="ShowCatMap(event, this, <?php echo $channelid; ?>, 'typeid2')" alt='选择副栏目' title='选择副栏目' /></p><?php } ?>
+        
+                 
+        <p><?php PrintAutoFieldsAdd($cInfos['fieldset']); ?></p>
+       
+    </div>
+    
+    <div id="adset" class="aaa" style="background:#ffffff; display:none; ">
+    <p><span class="span">简略标题</span><input name="shorttitle" type="text" id="shorttitle" style="width:150px"></p>
+     <p><span class="span">权重</span><input name="weight" type="text" id="weight" style="width:50px" value="<?php echo $maxWright['cc'];?>" />
+                (越小越靠前)</p>
+    <p><span class="span">附加选项</span><input name="remote" type="checkbox" class="np" id="remote" value="1"<?php if($cfg_rm_remote=='Y') echo ' checked="1" '; ?> />
+                下载远程图片和资源
+                <input name="dellink" type="checkbox" class="np" id="dellink" value="1"<?php if($cfg_arc_dellink=='Y') echo ' checked="1" '; ?> />
+                删除非站内链接
+                <input name="autolitpic" type="checkbox" class="np" id="autolitpic" value="1"<?php if($cfg_arc_autopic=='Y') echo ' checked="1" '; ?> />
+                提取第一个图片为缩略图
+                <input type='checkbox' name='needwatermark' value='1' class='np' <?php if($photo_markup=='1') echo ' checked="1" '; ?> />
+                图片是否加水印</p>
+     <p><span class="span">TAG标签</span><input name="tags" type="text" id="tags" value="" style="width:300px" />
+                (','号分开，单个标签小于12字节) </p>
+    	<p><span class="span">评论选项</span><input type='radio' name='notpost' class='np' value='0' <?php if($cfg_feedback_forbid=='N') echo "checked='1' "; ?> />
+              允许评论
+              &nbsp;
+              <input type='radio' name='notpost' class='np' value='1' <?php if($cfg_feedback_forbid=='Y') echo "checked='1' "; ?> />
+              禁止评论</p>
+              
+         <p><span class="span">浏览次数</span><input type='text' name='click' value='<?php echo ($cfg_arc_click=='-1' ? mt_rand(50, 200) : $cfg_arc_click); ?>' style='width:100px;' /></p>
+         <p><span class="span">文档来源</span><input name="source" type="text" id="source" style="width:160px" value="" size="16">
+                <input name="selsource" type="button" id="selsource" value="选择"></p>
+         <p><span class="span">作　者</span><input name="writer" type="text" id="writer" style="width:120px" value="">
+                <input name="selwriter" type="button" id="selwriter" value="选择"><script language='javascript'>InitPage();</script></p>
+         <p><span class="span">文档排序</span><select name="sortup" id="sortup" style="width:150">
+                  <option value="0" selected>默认排序</option>
+                  <option value="7">置顶一周</option>
+                  <option value="30">置顶一个月</option>
+                  <option value="90">置顶三个月</option>
+                  <option value="180">置顶半年</option>
+                  <option value="360">置顶一年</option>
+                </select></p>
+         <p><span class="span">阅读权限</span><select name="arcrank" id="arcrank" style="width:150px">
+                  <?php
+              $urank = $cuserLogin->getUserRank();
+              $dsql->SetQuery("Select * from `#@__arcrank` where adminrank<='$urank'");
+              $dsql->Execute();
+              while($row = $dsql->GetObject())
+              {
+              	echo "     <option value='".$row->rank."'>".$row->membername."</option>\r\n";
+              }
+              ?>
+                </select>
+            </p>
+         <p><span class="span">发布选项</span><input name="ishtml" type="radio" class="np" value="1" checked>
+                生成HTML
+                <input type="radio" name="ishtml" class="np" value="0">
+                仅动态浏览</p>
+         <p><span class="span">发布时间</span><?php
+			$nowtime = GetDateTimeMk(time());
+			echo "<input name=\"pubdate\" value=\"$nowtime\" type=\"text\" id=\"pubdate\" style=\"width:200\">";
+			?>
+                <script language="javascript" type="text/javascript">
+				    var showX = getElementLeft($Obj("pubdate")) + 109;
+					var showY = (window.navigator.userAgent.indexOf("MSIE") >=1 )? getElementTop($Obj("pubdate")) + 465 :  getElementTop($Obj("pubdate")) + 337;
+					if((window.navigator.userAgent.indexOf("MSIE 7.0") >=1 )) {
+						showX = getElementLeft($Obj("pubdate"))+105;
+						showY = getElementTop($Obj("pubdate"))+1200;
+					}
+					if(window.navigator.userAgent.indexOf("MSIE 6.0")>=1)
+					{
+						Calendar.setup({
+							inputField     :    "pubdate",
+							ifFormat       :    "%Y-%m-%d %H:%M:%S",
+							showsTime      :    true,
+							timeFormat     :    "24"
+						});
+					} else {
+						Calendar.setup({
+							inputField     :    "pubdate",
+							ifFormat       :    "%Y-%m-%d %H:%M:%S",
+							showsTime      :    true,
+							position       :    [showX, showY],
+							timeFormat     :    "24"
+						});
+					}
+				 </script></p>
+         <p><span class="span">消费金币</span><input name="money" type="text" id="money" value="0" size="10"></p>
+         <p><span class="span">关键字</span><input type='text' name="keywords" id="keywords" style="width:40%" value="" /><input name="autokey" type="checkbox" onClick="ShowHide('keywords');"; class="np" id="autokey" value="1"<?php if($cfg_arc_autokeyword=='Y') echo ' checked'; ?>>
+                自动获取，手动填写用","分开<input type="button" name="Submit" value="浏览..." style="width:56;height:20" onClick="SelectKeywords('form1.keywords');"></p>
+         <p><span class="span">内容摘要</span><textarea name="description" rows="3" id="description" style="width:80%"></textarea></p>
+         <p><span class="span">自定义文件名</span><input type="text" name="filename" id="filename" />（不包括后缀名如.html等）</p>
+         <p><span class="span"></span></p>
+    </div>
+   
+    <!-- //高级参数 -->
+    <div style="width:100%; height:80px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input name="imageField" value="提交" type="submit" src="images/button_ok.gif" width="60" height="22" class="np" border="0" style="cursor:pointer;width: 70px;
+color: #fff;
+background: #6BC30D;
+padding: 3px 8px;
+cursor: pointer;
+border-radius: 3px;">
+      <input name="" onClick="location.reload();" style="cursor:pointer;width: 70px;
+color: #fff;
+background: #6BC30D;
+padding: 3px 8px;
+cursor: pointer;
+border-radius: 3px;" type="reset" value="重置"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

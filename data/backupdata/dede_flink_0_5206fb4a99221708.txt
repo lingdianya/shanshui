@@ -1,0 +1,6 @@
+INSERT INTO `dede_flink` VALUES('10','1','http://www.baidu.com','百度旅游','','','','1425858937','1','2');
+INSERT INTO `dede_flink` VALUES('12','1','http://www.dede58.com','搜狐旅游','','','','1425859012','1','2');
+INSERT INTO `dede_flink` VALUES('11','1','http://www.sina.com','新浪旅游','','','','1425858960','1','2');
+INSERT INTO `dede_flink` VALUES('13','1','http://www.dede58.com','织梦模板','','','','1436151695','1','2');
+INSERT INTO `dede_flink` VALUES('14','1','http://www.dede58.com','织梦源码','','','','1436151700','1','2');
+INSERT INTO `dede_flink` VALUES('15','1','http://www.dede58.com','技术支持','','','','1436151710','1','2');

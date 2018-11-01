@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<link  href="/skin/css/daxiagu.css"  rel="stylesheet" type="text/css" />
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+</head>
+
+<body>
+ {dede:include filename="head.htm"/}
+
+<div class="ny_web" style="background:url(/skin/images/ny_bg02.jpg) center top no-repeat #eef3f8">
+  <div class="ny_content">
+    <div class="map">
+      <div class="map_title c_blue"><a href="{dede:field name='typeurl' function=”GetTypeName(@me)”/}">{dede:field name='typename' function=”GetTypeName(@me)”/}</a></div>
+      <div class="map_nav">您当前的位置：{dede:field name='position'/}</div>
+    </div>
+    
+
+    <div class="pic_list">
+      <ul>
+   
+	  {dede:list pagesize="20"}
+<li><table width="99%" border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td width="37%"><a href="[field:arcurl/]"><img src="[field:litpic/]" width="282" height="160"></a></td>
+    <td width="63%" valign="top" style="padding-top:20px;">
+ <div><span class="f_20 c_blue"><a href="[field:arcurl/]">[field:title/] </a></span> <span class="mp "><a href="#">门票价格</a></span> <span class="you"><a href="#">虚拟游</a></span></div>
+               <div>[field:description/]......</div>
+
+    </td>
+  </tr>
+</tbody></table>
+</li>
+{/dede:list}
+
+
+
+       
+      </ul>
+    </div>
+    <div class="div_1180">
+  <div class="line"></div>
+<div class="page_list">
+        <ul>
+          {dede:pagelist istitem="index,pre,next,end,option,info," listsize="10"/}
+        </ul>
+      </div>
+      <div class="h30"></div>
+</div>    
+    
+  </div>
+</div>
+ 
+ 
+{dede:include filename="footer.htm"/}
+ 
+</body>
+</html>
